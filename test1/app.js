@@ -7,21 +7,21 @@
     "ngResource",
     // "spotify"
   ])
-  // .factory ("SpotifyFactory", [
-  //   "$resource",
-  //   SpotifyFactoryFunction
-  // ])
   .config([
     "$stateProvider",
     Router
   ])
+  // .factory ("SpotifyFactory", [
+  //   "$resource",
+  //   SpotifyFactoryFunction
+  // ])
   .controller("IndexController",[
     IndexController
   ])
 
   function IndexController(){
     var vm = this
-    vm.bean = "beanie pie"
+    vm.bean = "beanie piles"
     vm.searchTerm = ""
     vm.search = function(){
       //fetch the API data from express
