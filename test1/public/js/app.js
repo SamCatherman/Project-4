@@ -40,7 +40,7 @@
       url: '/',
       controller:'IndexController',
       controllerAs:'vm',
-      templateUrl: 'ng-views/index.html'
+      templateUrl: '/assets/js/ng-views/index.html'
     })
   }
 

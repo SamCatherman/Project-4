@@ -11,7 +11,8 @@ app.use(parser.urlencoded({extended: true}))
 app.set("port", process.env.PORT || 4000)
 
 app.get("/", (req, res) => {
-console.log("yo");})
+res.render("songs-index");
+})
 app.set('view engine', 'hbs');
 app.engine(".hbs", hbs({
   extname:        ".hbs",
