@@ -13,6 +13,8 @@ app.set("port", process.env.PORT || 4000)
 app.get("/", (req, res) => {
 res.render("songs-index");
 })
+
+app.get("/")
 app.set('view engine', 'hbs');
 app.engine(".hbs", hbs({
   extname:        ".hbs",

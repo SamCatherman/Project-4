@@ -16,7 +16,15 @@
   //   SpotifyFactoryFunction
   // ])
   .controller("IndexController",[
+    "$scope",
+    "SongFactory",
+    "$state",
+    "$stateParams",
     IndexController
+  ])
+  .factory("SongFactory", [
+    "$resource",
+    SongFactoryFunction
   ])
 
   function IndexController(){
@@ -25,9 +33,18 @@
     vm.searchTerm = ""
     vm.search = function(){
       //fetch the API data from express
+
       console.log(this);
     }
   }
+
+  function SongFactoryFunction($resource){
+    console.log("songFactory");
+    return $resource("http://localhost:4000/api/songs/", {}, {
+      update: {method: "PUT"}
+    })
+  }
+
   //not sure where this comes into play.
   // function SpotifyFactoryFunction($resource){
   //   return $resource("https://api.spotify.com/v1/search?type=track&limit=10", {}, {
@@ -43,5 +60,4 @@
       templateUrl: '/assets/js/ng-views/index.html'
     })
   }
-
 })();
