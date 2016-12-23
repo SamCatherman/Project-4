@@ -15,12 +15,9 @@
     RandomSongFactory
   ])
   .controller("IndexController",[
-    "$scope",
     //check here
     "RandomSong",
     "$state",
-    "$http",
-    "$stateParams",
     IndexController
   ])
   .controller("ShowController", [
@@ -38,15 +35,17 @@
     })
   }
 
-  function IndexController($scope, RandomSong, $state, $stateParams, $resource){
+  function IndexController(RandomSong, $state){
     var vm = this
-    vm.randomsongs = RandomSong.query()
+    RandomSong.query().$promise.then( (res) => {
+      console.log(res);
+      vm.randomsongs = res;
+    })
     vm.getRandSong = function(){
     //   //fetch the API data from express
       console.log("when you click here, a random spotify song should appear");
     }
     console.log("i'm the index controller");
-    console.log(vm.randomsongs);
   }
 
   function ShowController($state, $stateParams, RandomSong){

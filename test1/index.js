@@ -27,9 +27,22 @@ app.get("/", (req, res) => {
   res.render("randomsongs-index");
 })
 
+app.get("/api/randomsongs", (req, res) => {
+  RandomSong.find({}).then(randomsongs => {
+    res.json(randomsongs)
+  })
+})
+
 app.get("/api/randomsongs/:name", (req, res) => {
   RandomSong.findOne({name: req.params.name}).then(function(randomsong){
     res.json(randomsong);
+  })
+})
+
+app.get('/api/randomsong', (req, res) => {
+  RandomSong.find({}).then(randomsongs => {
+    var randomIndex = Math.floor(Math.random() * randomsongs.length)
+    res.json(randomsongs[randomIndex])
   })
 })
 // post an API request?
