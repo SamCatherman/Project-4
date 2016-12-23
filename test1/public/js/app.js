@@ -19,7 +19,6 @@
     PickSongFactory
   ])
   .controller("IndexController",[
-    //check here
     "RandomSong",
     "$state",
     IndexController
@@ -27,7 +26,6 @@
   .controller("ShowController", [
     "$state",
     "$stateParams",
-    //check here
     "RandomSong",
     ShowController
   ])
@@ -77,7 +75,6 @@
       console.log(res);
       vm.picksong = res;
     })
-    // console.log(randomsongs[randomIndex]);
   }
   function Router($stateProvider){
     $stateProvider

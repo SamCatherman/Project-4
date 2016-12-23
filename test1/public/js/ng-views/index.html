@@ -1,10 +1,15 @@
 <h1>RandomSong</h1>
-<h4>Click the button to access data for a random song. Warning: This site is still under construction.
-  Currently, random songs are served from a local database. In the future, you will be able to draw a random song from a large online collection, like Spotify's or SoundCloud's API. </h4>
+<h3>
+  Click the button to access data for a random song. Warning: This site is still under construction.
+  Currently, random songs are served from a local database. In the future, you will be able to draw a random
+  song from a large online collection, like Spotify's or SoundCloud's API.
+</h3>
 <form id="search" ng-submit="vm.getRandSong()">
   <input type="submit" value="Find a random song">
 </form>
 <br>
+
+<h4>Songs Currently Available:</h4>
 <div data-ng-repeat="randomsong in vm.randomsongs">
   <a data-ui-sref="show({name: randomsong.name})">{{randomsong.name}}</a>
 </div>
