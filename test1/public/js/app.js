@@ -23,12 +23,13 @@
     "$stateParams",
     IndexController
   ])
-  // .controller("ShowController", [
-  //   "$state",
-  //   //check here
-  //   "RandomSong",
-  //   ShowController
-  // ])
+  .controller("ShowController", [
+    "$state",
+    "$stateParams",
+    //check here
+    "RandomSong",
+    ShowController
+  ])
 
 
   function RandomSongFactory($resource){
@@ -40,7 +41,6 @@
   function IndexController($scope, RandomSong, $state, $stateParams, $resource){
     var vm = this
     vm.randomsongs = RandomSong.query()
-
     vm.getRandSong = function(){
     //   //fetch the API data from express
       console.log("when you click here, a random spotify song should appear");
@@ -49,10 +49,11 @@
     console.log(vm.randomsongs);
   }
 
-  // function ShowController($state, $stateParams, RandomSong){
-  //   // this.randomSong = RandomSong.get({name: $stateParams.name})
-  //   console.log("I'm the show controller");
-  // }
+  function ShowController($state, $stateParams, RandomSong){
+    var vm = this
+    vm.randomsong = RandomSong.get({name: $stateParams.name})
+    console.log(vm.randomsong);
+  }
 
 
   function Router($stateProvider){
