@@ -53,6 +53,7 @@
     var vm = this
     vm.randomsong = RandomSong.get({name: $stateParams.name})
     console.log(vm.randomsong);
+    console.log("i'm the show controller");
   }
 
 

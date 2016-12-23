@@ -27,14 +27,6 @@ app.get("/", (req, res) => {
   res.render("randomsongs-index");
 })
 
-//still doesn't work:
-// app.get("/api/randomsongs", (req, res) => {
-//   console.log(req);
-//    RandomSong.find({}).then(function(randomsongs){
-//   //   res.render("randomsongs-index");
-//    })
-// })
-
 app.get("/api/randomsongs/:name", (req, res) => {
   RandomSong.findOne({name: req.params.name}).then(function(randomsong){
     res.json(randomsong);
