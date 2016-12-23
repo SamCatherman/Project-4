@@ -1,3 +1,4 @@
+//lists dependencies
 var express = require('express');
 var app = express();
 var parser = require('body-parser');
@@ -5,13 +6,10 @@ var hbs = require("express-handlebars");
 var http = require('http');
 var https = require('https');
 var mongoose = require('./db/connection')
-var RandomSong = require("./db/connection")
-
-app.use("/assets", express.static("public"));
-app.use(parser.json({extended: true}))
-app.use(parser.urlencoded({extended: true}))
+var RandomSong = mongoose.model("RandomSong")
+//sets port,
 app.set("port", process.env.PORT || 4000)
-
+//sets handlebars engine
 app.set('view engine', 'hbs');
 app.engine(".hbs", hbs({
   extname:        ".hbs",
@@ -19,15 +17,26 @@ app.engine(".hbs", hbs({
   layoutsDir:     "views/",
   defaultLayout:  "layout-main"
 }));
+//links public folder, body-parser
+app.use("/assets", express.static("public"));
+app.use(parser.json({extended: true}))
+app.use(parser.urlencoded({extended: true}))
 
+//index route
 app.get("/", (req, res) => {
- // res.send("hello")
- res.render("songs-index");
+  res.render("randomsongs-index");
 })
+
 //still doesn't work:
-app.get("/api/songs", (req, res) => {
-  RandomSong.find({}).then(function(songs){
-    res.json(songs)
+app.get("/api/randomsongs", (req, res) => {
+  RandomSong.find({}).then(function(randomsongs){
+    res.json(randomsongs);
+  })
+})
+
+app.get("/api/randomsongs/:name", (req, res) => {
+  RandomSong.findOne({name: req.params.name}).then(function(randomsong){
+    res.json(randomsong);
   })
 })
 // post an API request?

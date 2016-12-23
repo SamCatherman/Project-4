@@ -1,9 +1,10 @@
 <h1>Find a random song!</h1>
 <form id="search" ng-submit="vm.getRandSong()">
-  <!-- <input type="search" ng-model="vm.searchTerm" placeholder="search a title" id="movie-search"> -->
   <input type="submit" value="Submit">
 </form>
-<div data-ng-repeat="song in vm.songs">
+<!-- <div data-ng-repeat="song in vm.songs">
   <a data-ui-sref="show({name: song.name})">{{song.name}}</a>
+</div> -->
+<div data-ng-repeat="song in vm.songs">
+  <p>Hello!!!</p>
 </div>
-<div id="movie-detail"></div>
