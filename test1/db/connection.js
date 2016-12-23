@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
-var mongoURI = 'mongodb://localhost/spot'
-mongoose.connect(mongoURI)
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/spot')
 var Schema = mongoose.Schema;
 var RandomSongSchema = new mongoose.Schema(
   {
