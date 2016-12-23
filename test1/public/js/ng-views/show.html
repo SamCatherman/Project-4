@@ -1,11 +1,11 @@
 <h2>Song Show View</h2>
 <div data-ng-if="vm.randomsong">
   <ul>
-    <li>name: {{vm.randomsong.name}}</li>
-    <li>artist: {{vm.randomsong.artist}}</li>
-    <li>album: {{vm.randomsong.album}}</li>
-    <li>popularity: {{vm.randomsong.popularity}}</li>
-    <li>url: {{vm.randomsong.url}}</li>
+    <p>name: {{vm.randomsong.name}}</p>
+    <p>artist: {{vm.randomsong.artist}}</p>
+    <p>album: {{vm.randomsong.album}}</p>
+    <p>popularity: {{vm.randomsong.popularity}}</p>
+    <p data-ui-sref="vm.randomsong.url">{{vm.randomsong.url}}</p>
   </ul>
 </div>
 <button data-ui-sref="index">Back</button>

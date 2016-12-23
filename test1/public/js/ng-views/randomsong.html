@@ -1,0 +1,12 @@
+<h2>Enjoy your RandomSong</h2>
+<div data-ng-if="vm.picksong">
+  <ul>
+    <p>name: {{vm.picksong.name}}</p>
+    <p>artist: {{vm.picksong.artist}}</p>
+    <p>album: {{vm.picksong.album}}</p>
+    <p>popularity: {{vm.picksong.popularity}}</p>
+    <p>{{vm.picksong.url}}</p>
+  </ul>
+</div>
+
+<button data-ui-sref="index">Find another!</button>

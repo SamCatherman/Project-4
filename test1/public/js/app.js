@@ -14,6 +14,10 @@
     "$resource",
     RandomSongFactory
   ])
+  .factory("PickSong", [
+    "$resource",
+    PickSongFactory
+  ])
   .controller("IndexController",[
     //check here
     "RandomSong",
@@ -27,10 +31,23 @@
     "RandomSong",
     ShowController
   ])
+  .controller("RandomSongController", [
+    "$state",
+    "$stateParams",
+    "RandomSong",
+    "PickSong",
+    RandomSongController
+  ])
 
 
   function RandomSongFactory($resource){
     return $resource("/api/randomsongs/:name", {}, {
+      update: {method: "PUT"}
+    })
+  }
+
+  function PickSongFactory($resource){
+    return $resource('/api/randomsong', {}, {
       update: {method: "PUT"}
     })
   }
@@ -42,8 +59,7 @@
       vm.randomsongs = res;
     })
     vm.getRandSong = function(){
-    //   //fetch the API data from express
-      console.log("when you click here, a random spotify song should appear");
+      $state.go("randomsong")
     }
     console.log("i'm the index controller");
   }
@@ -55,7 +71,14 @@
     console.log("i'm the show controller");
   }
 
-
+  function RandomSongController($state, $stateParams, RandomSong, PickSong){
+    var vm = this
+    vm.picksong = PickSong.get().$promise.then( (res) => {
+      console.log(res);
+      vm.picksong = res;
+    })
+    // console.log(randomsongs[randomIndex]);
+  }
   function Router($stateProvider){
     $stateProvider
     .state("index",{
@@ -69,6 +92,12 @@
       controller:'ShowController',
       controllerAs:'vm',
       templateUrl:'/assets/js/ng-views/show.html'
+    })
+    .state("randomsong", {
+      url: "/randomsong",
+      controller: 'RandomSongController',
+      controllerAs: 'vm',
+      templateUrl: '/assets/js/ng-views/randomsong.html'
     })
   }
 })();

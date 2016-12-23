@@ -26,26 +26,28 @@ app.use(parser.urlencoded({extended: true}))
 app.get("/", (req, res) => {
   res.render("randomsongs-index");
 })
-
+//random songs route
 app.get("/api/randomsongs", (req, res) => {
   RandomSong.find({}).then(randomsongs => {
     res.json(randomsongs)
   })
 })
-
+//show individual random song
 app.get("/api/randomsongs/:name", (req, res) => {
   RandomSong.findOne({name: req.params.name}).then(function(randomsong){
     res.json(randomsong);
   })
 })
 
+//finds a random song from the source
 app.get('/api/randomsong', (req, res) => {
   RandomSong.find({}).then(randomsongs => {
     var randomIndex = Math.floor(Math.random() * randomsongs.length)
     res.json(randomsongs[randomIndex])
   })
 })
-// post an API request?
+
+// Spotify API request -- To-Do
 // app.post("/api/songs", (req, res) => {
 //   let query =
 // })
