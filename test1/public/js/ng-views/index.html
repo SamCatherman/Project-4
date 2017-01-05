@@ -9,7 +9,4 @@
 </form>
 <br>
 
-<h4>Songs Currently Available:</h4>
-<div data-ng-repeat="randomsong in vm.randomsongs">
-  <a data-ui-sref="show({name: randomsong.name})">{{randomsong.name}}</a>
-</div>
+<h4>{{vm.randomsongs.length}} songs available</h4>
