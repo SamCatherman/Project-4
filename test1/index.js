@@ -53,8 +53,6 @@ app.get('/api/randomsong', (req, res) => {
 // })
 
 //gets port
-app.listen(app.get("port")
-// , () => {
-//   // console.log("alllllooooo");
-// }
-)
+app.listen(app.get("port"), () => {
+  console.log("alllllooooo");
+})
