@@ -8,8 +8,6 @@ var RandomSongSchema = new mongoose.Schema(
   {
     name: String,
     artist: String,
-    album: String,
-    popularity: Number,
     url: String
   }
 )

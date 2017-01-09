@@ -23,12 +23,7 @@
     "$state",
     IndexController
   ])
-  .controller("ShowController", [
-    "$state",
-    "$stateParams",
-    "RandomSong",
-    ShowController
-  ])
+
   .controller("RandomSongController", [
     "$state",
     "$stateParams",
@@ -37,19 +32,21 @@
     RandomSongController
   ])
 
-
+//random song factory
   function RandomSongFactory($resource){
     return $resource("/api/randomsongs/:name", {}, {
       update: {method: "PUT"}
     })
   }
 
+//PickSong Factory
   function PickSongFactory($resource){
     return $resource('/api/randomsong', {}, {
       update: {method: "PUT"}
     })
   }
 
+//index controller function - main view
   function IndexController(RandomSong, $state){
     var vm = this
     RandomSong.query().$promise.then( (res) => {
@@ -59,23 +56,26 @@
     vm.getRandSong = function(){
       $state.go("randomsong")
     }
+    vm.newRandomSong = new RandomSong()
+    vm.create = function(){
+      vm.newRandomSong.$save().then(function(randomsong){
+        // $state.go("show", {name: randomsong.name})
+        console.log("saved");
+      })
+    }
     console.log("i'm the index controller");
   }
 
-  function ShowController($state, $stateParams, RandomSong){
-    var vm = this
-    vm.randomsong = RandomSong.get({name: $stateParams.name})
-    console.log(vm.randomsong);
-    console.log("i'm the show controller");
-  }
-
+//randomSong controller function - displays a random song
   function RandomSongController($state, $stateParams, RandomSong, PickSong){
     var vm = this
     vm.picksong = PickSong.get().$promise.then( (res) => {
-      console.log(res);
+      console.log("yo");
       vm.picksong = res;
     })
   }
+
+  //router
   function Router($stateProvider){
     $stateProvider
     .state("index",{

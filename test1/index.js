@@ -39,7 +39,27 @@ app.get("/api/randomsongs/:name", (req, res) => {
   })
 })
 
-//finds a random song from the source
+//post new song
+app.post("/api/randomsongs/", (req, res) => {
+  RandomSong.create(req.body).then(function(randomsong){
+    res.json(randomsong);
+  })
+})
+
+//delete song
+app.delete("/api/randomsongs/:name", (req, res) => {
+  RandomSong.findOneAndRemove({name: req.params.name}).then(function(){
+    res.json({success: true});
+  })
+})
+
+app.put("/api/randomsongs/:name", (req, res) => {
+  RandomSong.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(randomsong){
+    res.json(randomsong);
+  })
+})
+
+//finds a random song from the database
 app.get('/api/randomsong', (req, res) => {
   RandomSong.find({}).then(randomsongs => {
     var randomIndex = Math.floor(Math.random() * randomsongs.length)

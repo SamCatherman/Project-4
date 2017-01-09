@@ -6,10 +6,23 @@
   Currently, random songs are served from a local database. In the future, you will be able to draw a random
   song from a large online collection, like Spotify's or SoundCloud's API.
 </h3>
+<br>
 <form id="search" ng-submit="vm.getRandSong()">
   <input type="submit" value="Find a random song">
 </form>
 <br>
 
 <h4>{{vm.randomsongs.length}} songs available</h4>
+
+<!-- submit new songs to database -->
+  <h2>Add a new song:</h2>
+  <form data-ng-submit="vm.create()">
+    <input type="text" ng-model="vm.newRandomSong.name" placeholder = "Name..." />
+    <input type="text" ng-model="vm.newRandomSong.artist" placeholder = "Artist..." />
+    <input type="text" ng-model="vm.newRandomSong.url" placeholder = "Url..." />
+    <br>
+    <button type="submit">Jam</button>
+  </form>
+  
+<br>
 <footer>&copy Sam Catherman 2017</footer>
