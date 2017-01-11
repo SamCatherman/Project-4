@@ -59,7 +59,7 @@
     vm.newRandomSong = new RandomSong()
     vm.create = function(){
       vm.newRandomSong.$save().then(function(randomsong){
-        // $state.go("show", {name: randomsong.name})
+        $state.go("index")
         console.log("saved");
       })
     }
@@ -73,6 +73,14 @@
       console.log("yo");
       vm.picksong = res;
     })
+    vm.update = function(){
+      vm.picksong.$update({name: $stateParams.name})
+    }
+    vm.destroy = function(){
+      this.picksong.$delete({name: $stateParams.name}).then(function(){
+        $state.go("index")
+      })
+    }
   }
 
   //router

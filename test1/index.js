@@ -47,13 +47,14 @@ app.post("/api/randomsongs/", (req, res) => {
 })
 
 //delete song
-app.delete("/api/randomsongs/:name", (req, res) => {
+app.delete("/api/randomsong", (req, res) => {
   RandomSong.findOneAndRemove({name: req.params.name}).then(function(){
     res.json({success: true});
   })
 })
 
-app.put("/api/randomsongs/:name", (req, res) => {
+//edit song
+app.put("/api/randomsons", (req, res) => {
   RandomSong.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(randomsong){
     res.json(randomsong);
   })
@@ -67,10 +68,6 @@ app.get('/api/randomsong', (req, res) => {
   })
 })
 
-// Spotify API request -- To-Do
-// app.post("/api/songs", (req, res) => {
-//   let query =
-// })
 
 //gets port
 app.listen(app.get("port"), () => {
