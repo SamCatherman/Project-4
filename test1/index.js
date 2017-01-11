@@ -54,7 +54,7 @@ app.delete("/api/randomsong", (req, res) => {
 })
 
 //edit song
-app.put("/api/randomsons", (req, res) => {
+app.put("/api/randomsong", (req, res) => {
   RandomSong.findOneAndUpdate({name: req.params.name}, req.body, {new: true}).then(function(randomsong){
     res.json(randomsong);
   })
