@@ -46,7 +46,7 @@
     })
   }
 
-//index controller function - main view
+//index controller function - main view to list all random songs
   function IndexController(RandomSong, $state){
     var vm = this
     RandomSong.query().$promise.then( (res) => {
@@ -63,27 +63,27 @@
         console.log("saved");
       })
     }
-    console.log("i'm the index controller");
   }
 
 //randomSong controller function - displays a random song
   function RandomSongController($state, $stateParams, RandomSong, PickSong){
     var vm = this
     vm.picksong = PickSong.get().$promise.then( (res) => {
-      console.log("yo");
-      vm.picksong = res;
+    vm.picksong = res;
     })
     vm.update = function(){
+      console.log($stateParams.name);
       vm.picksong.$update({name: $stateParams.name})
     }
     vm.destroy = function(){
       this.picksong.$delete({name: $stateParams.name}).then(function(){
+        console.log("deleted");
         $state.go("index")
       })
     }
   }
 
-  //router
+  //router - index, show, and random song page
   function Router($stateProvider){
     $stateProvider
     .state("index",{

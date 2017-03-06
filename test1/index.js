@@ -3,8 +3,8 @@ var express = require('express');
 var app = express();
 var parser = require('body-parser');
 var hbs = require("express-handlebars");
-// var http = require('http');
-// var https = require('https');
+var http = require('http');
+var https = require('https');
 var mongoose = require('./db/connection')
 var RandomSong = mongoose.model("RandomSong")
 //sets port,
